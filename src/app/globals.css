@@ -1,26 +1,203 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* The Care Atlas - Medisure brand tokens */
+  --color-crimson: #ec3237; /* brand signature: graphics, route lines, large accents */
+  --color-garnet: #c2242a; /* crimson for small text & solid buttons (AA on light) */
+  --color-garnet-deep: #a01e23;
+  --color-ink: #111111;
+  --color-clay: #57504b; /* warm secondary text */
+  --color-cream: #fffcfa;
+  --color-rose: #fff0f2;
+  --color-powder: #eef8ff;
+  --color-lilac: #f5f1ff;
+  --color-butter: #fff8e7;
+  --color-line: #eee6e2;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 9rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background-color: var(--color-crimson);
+  color: var(--color-cream);
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-garnet);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* --- Scroll reveals --- */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* --- Entrance & route motion --- */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes route-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.hero-rise {
+  animation: rise-in 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+}
+
+.modal-scroll {
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(160, 30, 35, 0.55) rgba(238, 230, 226, 0.75);
+}
+
+.modal-scroll::-webkit-scrollbar {
+  width: 12px;
+}
+
+.modal-scroll::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(238, 230, 226, 0.75);
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(194, 36, 42, 0.95), rgba(160, 30, 35, 0.82));
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+.modal-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgba(194, 36, 42, 1), rgba(160, 30, 35, 0.94));
+  border: 3px solid transparent;
+  background-clip: padding-box;
+}
+
+/* --- Circle of Care: the solar system ---
+   Each stage chip rides a rotating arm inside a tilted orbit plane and a
+   vertically squashed layer (circle → ellipse). Separate inverse wrappers
+   keep the chip upright and undistorted while the orbit itself moves. */
+.orbit-system {
+  --squash: 1;
+  --tilt: 0deg;
+}
+.orbit-ring {
+  transform: rotate(var(--tilt)) scaleY(var(--squash));
+  transform-origin: center;
+}
+.orbit-plane {
+  transform: rotate(var(--tilt));
+  transform-origin: center;
+}
+.orbit-squash {
+  transform: scaleY(var(--squash));
+  transform-origin: center;
+}
+.orbit-holder {
+  --r: var(--r-sm);
+}
+.orbit-unsquash {
+  display: block;
+  transform: scaleY(calc(1 / var(--squash)));
+  transform-origin: 0 0;
+}
+.orbit-untilt {
+  display: block;
+  transform: rotate(calc(-1 * var(--tilt)));
+  transform-origin: 0 0;
+}
+@media (min-width: 640px) {
+  .orbit-system {
+    --squash: 0.82;
+    --tilt: -11deg;
+  }
+  .orbit-holder {
+    --r: var(--r-lg);
+  }
+}
+@keyframes orbit-rev {
+  from {
+    transform: rotate(var(--base));
+  }
+  to {
+    transform: rotate(calc(var(--base) + 360deg));
+  }
+}
+@keyframes orbit-rev-counter {
+  from {
+    transform: rotate(calc(-1 * var(--base)));
+  }
+  to {
+    transform: rotate(calc(-1 * var(--base) - 360deg));
+  }
+}
+.orbit-arm {
+  transform: rotate(var(--base));
+  animation: orbit-rev var(--dur) linear infinite;
+}
+.orbit-counter {
+  display: block;
+  /* Counter-transforms must pivot on the orbit point (the holder's
+     top-left), not the chip's own centre */
+  transform-origin: 0 0;
+  transform: rotate(calc(-1 * var(--base)));
+  animation: orbit-rev-counter var(--dur) linear infinite;
+}
+[data-orbits-paused="true"] .orbit-arm,
+[data-orbits-paused="true"] .orbit-counter {
+  animation-play-state: paused;
+}
+
+/* --- Reduced motion: everything settles instantly --- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

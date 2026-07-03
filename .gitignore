@@ -1,41 +1,156 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# ------------------------------------------------------------
+# Core dependencies and package manager caches
+# ------------------------------------------------------------
+node_modules/
+.pnp
 .pnp.*
+.npm/
+.pnpm-store/
+.pnpm-debug.log*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
+!.yarn/sdks
 !.yarn/versions
+bower_components/
+jspm_packages/
+vendor/
 
-# testing
-/coverage
+# ------------------------------------------------------------
+# Build output, framework caches, reports
+# Covers JavaScript / TypeScript / Next.js / common frontend tools
+# ------------------------------------------------------------
+.next/
+out/
+build/
+dist/
+coverage/
+.cache/
+.parcel-cache/
+.turbo/
+.vite/
+.svelte-kit/
+.nuxt/
+.angular/
+storybook-static/
+*.tsbuildinfo
+next-env.d.ts
+.shots/
 
-# next.js
-/.next/
-/out/
+# ------------------------------------------------------------
+# Environment files and local secrets
+# Keep example env files committed separately if needed
+# ------------------------------------------------------------
+.env
+.env.*
+!.env.example
+!.env.sample
+*.local
+*.secret
+*.secrets
 
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# debug
+# ------------------------------------------------------------
+# Logs, temp files, diagnostics
+# ------------------------------------------------------------
+*.log
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+lerna-debug.log*
+pnpm-debug.log*
+*.pid
+*.pid.lock
+*.seed
+*.stackdump
+tmp/
+temp/
+.tmp/
 
-# env files (can opt-in for committing if needed)
-.env*
+# ------------------------------------------------------------
+# Python
+# ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pyre/
+.hypothesis/
+.tox/
+.nox/
+.coverage
+.coverage.*
+htmlcov/
+site/
+.eggs/
+*.egg
+*.egg-info/
+pip-wheel-metadata/
+Pipfile.lock
+poetry.lock
+.venv/
+venv/
+env/
+ENV/
 
-# vercel
-.vercel
+# ------------------------------------------------------------
+# Java / Kotlin / Gradle / Maven
+# ------------------------------------------------------------
+.gradle/
+.gradle-cache/
+target/
+bin/
+classes/
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+.mvn/wrapper/maven-wrapper.jar
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# ------------------------------------------------------------
+# Other language / toolchain clutter that often appears in mixed repos
+# ------------------------------------------------------------
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.swp
+*.swo
+*~
+
+# macOS / Windows
+.DS_Store
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Spotlight-V100/
+.Trashes/
+
+# certificates / keys
+*.pem
+*.key
+*.crt
+
+# hosting / deployment
+.vercel/
+.netlify/
+.serverless/
+
+# generated archives and backups
+*.zip
+*.tar
+*.tgz
+*.gz
+*.7z
+*.bak
+*.old
+*.orig
