@@ -78,43 +78,45 @@ export default function Hero() {
             {site.hero.copy}
           </p>
           <div
-            className="hero-rise mt-9 flex flex-wrap items-center gap-4"
+            className="hero-rise mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap sm:items-center sm:gap-4"
             style={{ animationDelay: "0.3s" }}
           >
             <button
               type="button"
               onClick={openAppointment}
-              className="rounded-full bg-garnet px-7 py-3.5 text-base font-semibold text-white transition-colors hover:bg-garnet-deep"
+              className="w-full rounded-full bg-garnet px-4 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-garnet-deep sm:w-auto sm:px-7 sm:text-base"
             >
               {site.hero.primaryCta}
             </button>
             <a
               href={site.hero.secondaryHref}
-              className="rounded-full border border-ink/20 px-7 py-3.5 text-base font-semibold text-ink transition-colors hover:border-ink hover:bg-white"
+              className="flex w-full items-center justify-center rounded-full border border-ink/20 px-4 py-3.5 text-sm font-semibold text-ink transition-colors hover:border-ink hover:bg-white sm:w-auto sm:px-7 sm:text-base"
             >
               {site.hero.secondaryCta}
             </a>
           </div>
 
           <div
-            className="hero-rise mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 border-t border-line pt-7"
+            className="hero-rise mt-10 border-t border-line pt-7"
             style={{ animationDelay: "0.4s" }}
           >
-            {site.hero.markers.map((marker, index) => {
-              const Icon = quickLinkIcons[index];
-              return (
-                <a
-                  key={marker.href}
-                  href={marker.href}
-                  className="group inline-flex items-center gap-2 text-sm font-semibold text-garnet-deep"
-                >
-                  <Icon aria-hidden="true" className="size-4 text-crimson" />
-                  <span className="underline-offset-4 group-hover:underline">
-                    {marker.label}
-                  </span>
-                </a>
-              );
-            })}
+            <div className="hero-marker-row -mx-1 flex gap-4 overflow-x-auto px-1 pb-1 sm:mx-0 sm:flex-wrap sm:gap-x-7 sm:gap-y-3 sm:overflow-visible sm:px-0 sm:pb-0">
+              {site.hero.markers.map((marker, index) => {
+                const Icon = quickLinkIcons[index];
+                return (
+                  <a
+                    key={marker.href}
+                    href={marker.href}
+                    className="group inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-garnet-deep"
+                  >
+                    <Icon aria-hidden="true" className="size-4 text-crimson" />
+                    <span className="underline-offset-4 group-hover:underline">
+                      {marker.label}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
 

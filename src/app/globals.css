@@ -77,6 +77,14 @@ body {
   animation: rise-in 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
 }
 
+.hero-marker-row {
+  scrollbar-width: none;
+}
+
+.hero-marker-row::-webkit-scrollbar {
+  display: none;
+}
+
 .modal-scroll {
   scrollbar-gutter: stable;
   scrollbar-width: thin;

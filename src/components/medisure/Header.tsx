@@ -36,23 +36,23 @@ export default function Header() {
       }`}
     >
       <div className="border-b border-white/10 bg-ink text-white">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-2 px-5 py-2 text-[11px] sm:px-8 sm:text-xs">
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5">
+        <div className="mx-auto flex max-w-7xl flex-col gap-1.5 px-5 py-2 text-[10px] sm:flex-row sm:items-center sm:justify-between sm:gap-x-6 sm:gap-y-2 sm:px-8 sm:text-xs">
+          <div className="grid w-full grid-cols-2 gap-x-3 gap-y-1 sm:flex sm:w-auto sm:flex-wrap sm:items-center sm:gap-x-5 sm:gap-y-1.5">
             <a
               href={site.contact.phoneHref}
-              className="inline-flex items-center gap-1.5 text-white/92 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1 text-white/92 transition-colors hover:text-white sm:gap-1.5"
             >
               <Phone aria-hidden="true" className="size-3.5" />
               {site.contact.phone}
             </a>
             <a
               href={site.contact.emailHref}
-              className="inline-flex items-center gap-1.5 text-white/92 transition-colors hover:text-white"
+              className="inline-flex items-center gap-1 text-white/92 transition-colors hover:text-white sm:gap-1.5"
             >
               <Mail aria-hidden="true" className="size-3.5" />
               {site.contact.email}
             </a>
-            <span className="inline-flex items-center gap-1.5 text-white/78">
+            <span className="col-span-2 inline-flex items-center gap-1 text-white/78 sm:col-auto sm:gap-1.5">
               <Clock3 aria-hidden="true" className="size-3.5" />
               {site.contact.hours}
             </span>
@@ -79,11 +79,11 @@ export default function Header() {
         <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-5 sm:px-8">
           <a
             href="#top"
-            className="flex items-center gap-2.5"
+            className="flex min-w-0 items-center gap-2.5"
             aria-label="Medisure Hospital, back to top"
           >
             <BrandLogo className="h-12 w-12" />
-            <span className="hidden text-[15px] font-semibold tracking-tight text-ink min-[400px]:block">
+            <span className="truncate text-[15px] font-semibold tracking-tight text-ink">
               Medisure Hospital
             </span>
           </a>
