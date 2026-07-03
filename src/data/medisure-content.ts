@@ -54,6 +54,19 @@ export const site = {
     ],
   },
 
+  doctorSpotlight: {
+    eyebrow: "Leadership Spotlight",
+    heading: "Dr M Dhanunjaya",
+    role: "Physiotherapist",
+    title: "Managing Director, Medisure Hospital",
+    imageSrc: "/doctors/IMG_4840.PNG",
+    imageAlt: "Dr M Dhanunjaya, Managing Director of Medisure Hospital",
+    copy:
+      "Medisure Hospital is being shaped under the guidance of Dr M Dhanunjaya, a physiotherapist whose approach centres on clarity, recovery, and patient confidence. His leadership reflects a simple belief: good care should never feel confusing, rushed, or distant. It should feel personal, well-explained, and steady from the first conversation onward.",
+    quote:
+      "When people understand their care, they step into recovery with more trust and less fear.",
+  },
+
   careCircle: {
     centerLabel: "Medisure Care",
     centerTagline: "Care that comes full circle.",

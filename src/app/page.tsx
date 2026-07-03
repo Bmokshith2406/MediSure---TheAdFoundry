@@ -1,6 +1,7 @@
 import { AppointmentProvider } from "@/components/medisure/AppointmentContext";
 import Header from "@/components/medisure/Header";
 import Hero from "@/components/medisure/Hero";
+import DoctorSpotlight from "@/components/medisure/DoctorSpotlight";
 import CarePaths from "@/components/medisure/CarePaths";
 import Specialties from "@/components/medisure/Specialties";
 import Journey from "@/components/medisure/Journey";
@@ -20,6 +21,7 @@ export default function Home() {
       <Header />
       <main id="main">
         <Hero />
+        <DoctorSpotlight />
         <CarePaths />
         <Specialties />
         <Journey />
